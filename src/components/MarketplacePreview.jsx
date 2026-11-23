@@ -39,7 +39,7 @@ export default function MarketplacePreview({ onOpenScanModal }) {
       virginPriceEquiv: "$19,500",
       status: "Available for Immediate Flatbed Dispatch",
       complianceCode: "AISC 360-16 / ASTM A6 Stamped",
-      imageUrl: "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "/materials/steel-beams.jpg"
     },
     {
       id: "LOT-902",
@@ -54,7 +54,7 @@ export default function MarketplacePreview({ onOpenScanModal }) {
       virginPriceEquiv: "$12,400",
       status: "Reserved (Skanska General Contracting)",
       complianceCode: "NDS Structural Grade #1 Verified",
-      imageUrl: "https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "/materials/timber-joists.jpg"
     },
     {
       id: "LOT-903",
@@ -69,7 +69,7 @@ export default function MarketplacePreview({ onOpenScanModal }) {
       virginPriceEquiv: "$9,100",
       status: "Ready for Delivery",
       complianceCode: "ASTM C62 / Brick Institute BIA Certified",
-      imageUrl: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "/materials/reclaimed-brick.jpg"
     },
     {
       id: "LOT-904",
@@ -84,7 +84,7 @@ export default function MarketplacePreview({ onOpenScanModal }) {
       virginPriceEquiv: "$48,000",
       status: "Active Escrow Bidding Open",
       complianceCode: "AHRI Standard 550/590 Certified",
-      imageUrl: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "/materials/industrial-chiller.jpg"
     },
     {
       id: "LOT-905",
@@ -99,7 +99,7 @@ export default function MarketplacePreview({ onOpenScanModal }) {
       virginPriceEquiv: "$16,200",
       status: "Available for Dispatch",
       complianceCode: "AWS D1.1 Welding Integrity Cleared",
-      imageUrl: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "/materials/tube-columns.jpg"
     },
     {
       id: "LOT-906",
@@ -114,7 +114,7 @@ export default function MarketplacePreview({ onOpenScanModal }) {
       virginPriceEquiv: "$15,800",
       status: "Available",
       complianceCode: "ANSI A190.1 Structural Standard",
-      imageUrl: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80"
+      imageUrl: "/materials/glulam-beams.jpg"
     }
   ];
 
@@ -181,7 +181,13 @@ export default function MarketplacePreview({ onOpenScanModal }) {
                 <img 
                   src={item.imageUrl} 
                   alt={item.title} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                  loading="lazy"
+                  onError={(e) => {
+                    // Fallback to verified unsplash structural image if local fetch is interrupted
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=600&q=80";
+                  }}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-transparent"></div>
                 
